@@ -1,0 +1,161 @@
+120 40
+p0 F p44
+p1 M p34
+p2 M p74
+p3 F p92
+p4 M p69
+p5 M p78
+p6 F p99
+p7 M p104
+p8 M p8
+p9 F p89
+p10 M p68
+p11 M p67
+p12 F p111
+p13 M p88
+p14 M p26
+p15 F p65
+p16 M p85
+p17 M p95
+p18 F p20
+p19 M p18
+p20 M p19
+p21 F p34
+p22 M 
+p23 M p108
+p24 F p116
+p25 M p62
+p26 M p34
+p27 F p37
+p28 M p22
+p29 M p38
+p30 F p103
+p31 M p108
+p32 M p14
+p33 F p93
+p34 M 
+p35 M p34
+p36 F p30
+p37 M p5
+p38 M p66
+p39 F p109
+p40 M 
+p41 M p87
+p42 F p4
+p43 M p1
+p44 M p32
+p45 F p28
+p46 M p44
+p47 M p62
+p48 F p57
+p49 M p96
+p50 M p119
+p51 F 
+p52 M p43
+p53 M p0
+p54 F 
+p55 M p118
+p56 M p62
+p57 F p112
+p58 M p102
+p59 M p47
+p60 F p87
+p61 M p78
+p62 M p113
+p63 F p25
+p64 M p28
+p65 M p57
+p66 F p62
+p67 M p15
+p68 M p112
+p69 F p66
+p70 M p25
+p71 M p43
+p72 F p40
+p73 M 
+p74 M p82
+p75 F p27
+p76 M p54
+p77 M p12
+p78 F 
+p79 M p44
+p80 M p72
+p81 F p2
+p82 M p35
+p83 M p73
+p84 F p77
+p85 M p65
+p86 M p35
+p87 F p73
+p88 M p97
+p89 M p58
+p90 F 
+p91 M p85
+p92 M p90
+p93 F p74
+p94 M p119
+p95 M p104
+p96 F p98
+p97 M p0
+p98 M p37
+p99 F 
+p100 M p55
+p101 M p50
+p102 F 
+p103 M p13
+p104 M p24
+p105 F p23
+p106 M p87
+p107 M p44
+p108 F p29
+p109 M p100
+p110 M 
+p111 F p0
+p112 M p86
+p113 M p4
+p114 F p14
+p115 M p77
+p116 M p84
+p117 F 
+p118 M p45
+p119 M p47
+p109 p14
+p59 p107
+p25 p26
+p76 p75
+p7 p12
+p41 p111
+p18 p27
+p3 p33
+p33 p48
+p52 p81
+p13 p90
+p32 p42
+p2 p3
+p54 p94
+p54 p57
+p118 p99
+p59 p40
+p61 p25
+p86 p5
+p73 p47
+p25 p50
+p116 p75
+p22 p94
+p50 p100
+p22 p39
+p32 p46
+p99 p45
+p87 p49
+p80 p97
+p61 p25
+p54 p82
+p100 p102
+p31 p79
+p86 p32
+p55 p9
+p30 p60
+p56 p17
+p31 p119
+p72 p71
+p105 p24
