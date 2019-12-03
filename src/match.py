@@ -2,6 +2,15 @@ import networkx as nx
 import random
 import sys
 
+
+class GenderException(Exception):
+    def __init__(self, msg):
+        self.msg = msg
+
+    def __str__(self):
+        return self.msg
+
+
 class FileReader(object):
     
     def read_file(fname):
@@ -101,21 +110,23 @@ class MatchingThree(FileReader, object):
         G, I = MatchingThree.read_file(fname)
         self.G = G
         self.I = I
-     
+    
     def check_constraint(self, p, q, r):
         # exclusive constraint
         assert (p, q) not in self.I, "Mutual-exclusive member {}, {}".format(p, q)
         assert (q, r) not in self.I, "Mutual-exclusive member {}, {}".format(q, r)
         assert (r, p) not in self.I, "Mutual-exclusive member {}, {}".format(r, p)
         # gender constraint
-        gdp, gdq, gdr = self.G.nodes[p], self.G.nodes[q], self.G.nodes[r] 
-        assert not gdp == gdq == gdr == 'F', "cannot form a group with 3 females"
+        gdp, gdq, gdr = self.G.nodes[p]['gender'], self.G.nodes[q]['gender'], self.G.nodes[r]['gender']
+        
+        if gdp == gdq == gdr == 'F':
+            raise GenderException("cannot form a group with 3 females")
         return True
     
     def soft_check_constraint(self, p, q, r):
         try: 
             return self.check_constraint(p, q, r)
-        except AssertionError:
+        except:
             return False
 
     def evaluate_acceptance_rate(self, p, q, r):
@@ -130,6 +141,7 @@ class MatchingThree(FileReader, object):
 
     def match(self):
         M = []
+        _M = []
         unmatched = list(self.G.nodes)
         assert len(unmatched) % 3 == 0, "The number of nodes should be multiple of 3"
         
@@ -146,6 +158,12 @@ class MatchingThree(FileReader, object):
                     self.check_constraint(u, v, w)
                 except AssertionError as e:
                     raise Exception("3-cycle({}, {}, {}) violates contraint: {}".format(u, v, w, e))
+                except GenderException as e:
+                    print(e)
+                    _M.append([u, v, w])
+                    unmatched.remove(u)
+                    unmatched.remove(v)
+                    unmatched.remove(w)
                 else:
                     M.append((u, v, w))
                     unmatched.remove(u)
@@ -161,15 +179,17 @@ class MatchingThree(FileReader, object):
             raise Exception("Cannot avoid 3 female students in a team")
         
         # group randomly and shuffle until satisfies the constraint
-        _M = [[] for _ in range(len(unmatched) // 3)]
+        __M = [[] for _ in range(len(unmatched) // 3)]
         i = 0
         for node in random.sample(f_nodes, len(f_nodes)):
-            _M[i % len(_M)].append(node)
+            __M[i % len(__M)].append(node)
             i += 1
 
         for node in random.sample(m_nodes, len(m_nodes)):
-            _M[i % len(_M)].append(node)
+            __M[i % len(__M)].append(node)
             i += 1
+        
+        _M.extend(__M)
 
         _swap_limit = 200000
         while True:
@@ -186,6 +206,7 @@ class MatchingThree(FileReader, object):
                 continue
             else:
                 break
+        print(_M)
 
         # evolutionary optimization
         for _ in range(len(_M) ** 2):
@@ -195,8 +216,10 @@ class MatchingThree(FileReader, object):
             acc = self.evaluate_acceptance_rate(*group1) + \
                     self.evaluate_acceptance_rate(*group2)
             group1[i], group2[j] = group2[j], group1[i]
-            if acc > self.evaluate_acceptance_rate(*group1) + \
-                    self.evaluate_acceptance_rate(*group2):
+            if not self.soft_check_constraint(*group1) or \
+                not self.soft_check_constraint(*group2) or \
+                acc > self.evaluate_acceptance_rate(*group1) + \
+                self.evaluate_acceptance_rate(*group2):
                 group1[i], group2[j] = group2[j], group1[i]
             
         M.extend(map(tuple, _M))
