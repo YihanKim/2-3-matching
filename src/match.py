@@ -134,6 +134,7 @@ class MatchingThree(FileReader, object):
         assert len(unmatched) % 3 == 0, "The number of nodes should be multiple of 3"
         
         # finding 3-cycles
+        '''
         for u, v in self.G.edges:
             w = next(self.G.neighbors(v), None)
             if u != w and \
@@ -151,7 +152,7 @@ class MatchingThree(FileReader, object):
                     unmatched.remove(u)
                     unmatched.remove(v)
                     unmatched.remove(w)
-        
+        '''
         _G = self.G.subgraph(unmatched)
         
         m_nodes = [x for x,y in _G.nodes(data=True) if y['gender'] == 'M']

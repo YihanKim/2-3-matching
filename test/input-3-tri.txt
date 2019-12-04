@@ -1,0 +1,7 @@
+6 0
+p1 M p2
+p2 M p3
+p3 M p1
+p4 M p1
+p5 M p2
+p6 M p2
