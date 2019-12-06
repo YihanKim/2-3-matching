@@ -1,7 +1,7 @@
 8
 p1 M p2 
 p2 M p1
-p3 F p1
+p3 F 
 p4 M p1
 p5 M p4
 p6 F p5
