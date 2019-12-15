@@ -1,9 +1,0 @@
-6 1
-p1 F p2
-p2 F p3
-p3 F p1
-p4 M p6
-p5 M p6
-p6 M p5
-p4 p5
-
