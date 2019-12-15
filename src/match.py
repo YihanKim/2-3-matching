@@ -106,6 +106,6 @@ class TwoThreeMatching(object):
             if original_size <= new_size:
                 flex_matched[i] = g2_
                 flex_matched[j] = g1_
-        print(solid_matched)
+        
         match = solid_matched + flex_matched
         return match
